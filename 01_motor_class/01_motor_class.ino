@@ -12,14 +12,7 @@ void setup() {
 }
 
 void loop() {
-  for (int i = -255, i < 255; i++) {
-    m1.SetSpd(i);
-    m2.SetSpd(i);
+    m1.SetSpd(0);
+    m2.SetSpd(0);
     delay(10);
-  }
-  for (int i = 255, i > -255; i--) {
-    m1.SetSpd(i);
-    m2.SetSpd(i);
-    delay(10);
-  }
 }
