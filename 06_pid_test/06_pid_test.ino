@@ -3,7 +3,7 @@
 #define i_gain 0.02
 #define d_gain 1
 
-int ang=0;
+int ang = 0;
 int ang_int = 0;
 int ang_pre = 0;
 
@@ -13,6 +13,7 @@ void output() {
     digitalWrite(3, LOW);
     digitalWrite(4, LOW);
     digitalWrite(5, LOW);
+    ang_int = 0;
     //    Serial.println("waiting");
   }
   else { //button押下状態
@@ -21,25 +22,25 @@ void output() {
     ang_pre = ang;
     ang = map(analogRead(0), 125, 890, -100, 100);
     //    Serial.println(ang);
-    if (ang * ang_pre > 0) {
+    if (ang * ang_pre > 0 && abs(ang_int) < 2147483647) {
       ang_int = ang_int + ang;
     }
     else ang_int = 0;
-    
+
     if (ang == 0) {
-    digitalWrite(3, LOW);
+      digitalWrite(3, LOW);
       digitalWrite(4, LOW);
       digitalWrite(5, LOW);
     }
     else if (ang < 0) {
-    digitalWrite(3, LOW);
+      digitalWrite(3, LOW);
       digitalWrite(4, HIGH);
-      analogWrite(5, -1 * (ang * p_gain+ang_int*i_gain+d_gain*(ang_pre-ang)));
+      analogWrite(5, -1 * (ang * p_gain + ang_int * i_gain + d_gain * (ang_pre - ang)));
     }
     else if (ang > 0) {
-    digitalWrite(3, HIGH);
+      digitalWrite(3, HIGH);
       digitalWrite(4, LOW);
-      analogWrite(5, ang * p_gain+ang_int*i_gain+d_gain*(ang_pre-ang));
+      analogWrite(5, ang * p_gain + ang_int * i_gain + d_gain * (ang_pre - ang));
     }
   }
 }
