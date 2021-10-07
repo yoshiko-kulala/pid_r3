@@ -33,7 +33,7 @@ void output() {
     else if (ang < 0) {
       digitalWrite(3, HIGH);
       digitalWrite(4, LOW);
-      analogWrite(5, -1 * (ang * p_gain + ang_int * i_gain));
+      analogWrite(5, ang * p_gain + ang_int * i_gain);
     }
     else if (ang > 0) {
       digitalWrite(3, LOW);
