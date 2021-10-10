@@ -22,10 +22,12 @@ void output() {
     ang_pre = ang;
     ang = map(analogRead(0), 125, 890, -100, 100);
     //    Serial.println(ang);
-    if (ang * ang_pre > 0 && abs(ang_int) < 2147483647) {
+    if (ang * ang_pre < 0){
+      ang_int = 0;
+    }
+    else if(abs(ang_int) < 2147483647) {
       ang_int = ang_int + ang;
     }
-    else ang_int = 0;
 
     if (ang == 0) {
       digitalWrite(3, LOW);
