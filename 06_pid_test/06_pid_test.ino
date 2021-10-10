@@ -1,7 +1,7 @@
 #include <MsTimer2.h>
-#define p_gain 0.8
-#define i_gain 0.02
-#define d_gain 1
+#define p_gain 1.5
+#define i_gain 0.0416
+#define d_gain 0.0104
 
 int ang = 0;
 int ang_int = 0;
@@ -37,16 +37,16 @@ void output() {
     else if (ang < 0) {
       digitalWrite(3, LOW);
       digitalWrite(4, HIGH);
-      analogWrite(5, ang * p_gain
+      analogWrite(5, abs(ang * p_gain
                   + ang_int * i_gain
-                  - d_gain * (ang_pre - ang));
+                  - d_gain * (ang_pre - ang)));
     }
     else if (ang > 0) {
       digitalWrite(3, HIGH);
       digitalWrite(4, LOW);
-      analogWrite(5, ang * p_gain
+      analogWrite(5, abs(ang * p_gain
                   + ang_int * i_gain
-                  - d_gain * (ang_pre - ang));
+                  - d_gain * (ang_pre - ang)));
     }
   }
 }
