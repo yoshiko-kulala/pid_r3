@@ -35,12 +35,16 @@ void output() {
     else if (ang < 0) {
       digitalWrite(3, LOW);
       digitalWrite(4, HIGH);
-      analogWrite(5, ang * p_gain + ang_int * i_gain - d_gain * (ang_pre - ang));
+      analogWrite(5, ang * p_gain
+                  + ang_int * i_gain
+                  - d_gain * (ang_pre - ang));
     }
     else if (ang > 0) {
       digitalWrite(3, HIGH);
       digitalWrite(4, LOW);
-      analogWrite(5, ang * p_gain + ang_int * i_gain - d_gain * (ang_pre - ang));
+      analogWrite(5, ang * p_gain
+                  + ang_int * i_gain
+                  - d_gain * (ang_pre - ang));
     }
   }
 }
